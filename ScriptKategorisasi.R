@@ -59,7 +59,7 @@ df$Comments <- str_trim(df$Comments)
 categorize_comment <- function(comment, case_sensitive = FALSE) {
 
 #Cek apabila comment kosong atau tidak
-  if (is.na(comment) || trimws(as.character(comment) == "")) {
+  if (is.na(comment) || trimws(as.character(comment)) == "") {
     return("Tidak Terkategorikan")
   }
 
@@ -69,6 +69,8 @@ comment_text <- as.character(comment)
 #Mengubah text comment menjadi lowercase (apabila tidak) agar case-insensitive  
   if (!case_sensitive){
   comment_lower <- tolower(comment_text)
+  } else {
+  comment_lower <- comment_text
   }
 #Deteksi pattern when_yah dan my_claim dengan str_detect
 has_when_yah <- str_detect(comment_lower, pattern_when_yah)
