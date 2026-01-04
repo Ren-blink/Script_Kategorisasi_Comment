@@ -49,6 +49,12 @@ pattern_my_claim <- paste(
   sep = "|"
 )
 
+#Menghilangkan emoji
+df$Comments <- str_replace_all(df$Comments, "[^\x01-\x7F]+", "")
+
+#Menghilangkan spasi di awal dan akhir komentar
+df$Comments <- str_trim(df$Comments)
+
 #fungsi categorize yang nerima parameter comment dan mengasumsikan kalau case insensitive secara default
 categorize_comment <- function(comment, case_sensitive = FALSE) {
 
